@@ -1,20 +1,18 @@
 import React from 'react';
 import {
-  StyleSheet,
-  Text,
-  View
+  StyleSheet
 } from 'react-native';
-import { Scene, Router } from 'react-native-router-flux';
+import { Router, Scene } from 'react-native-router-flux';
 
 import LoginLanding from './components/LoginLanding';
 import SignUp from './components/SignUp';
 // import DashBoard from './components/DashBoard';
 
-const tabIcon = ({ selected, title }) => {
-  return (
-    <Text style={{ color: selected ? "green" : "white" }}>{title}</Text>
-  );
-}
+// const tabIcon = ({ selected, title }) => {
+//   return (
+//     <Text style={{ color: selected ? "green" : "white" }}>{title}</Text>
+//   );
+// }
 
 export default class App extends React.Component {
   render() {
@@ -22,29 +20,15 @@ export default class App extends React.Component {
       <Router>
         <Scene key="root">
           <Scene
-            Key="Login"
-            Component={LoginLanding}
+            Key="LoginLanding"
+            component={LoginLanding}
             title="Login"
           />
           <Scene
             key="SignUp"
-            Component={SignUp}
-            title="SignUp"
+            component={SignUp}
+            title="Sign Up"
           />
-
-          {/* <Scene
-            key="tabBar"
-            tabs
-            tabBarStyle={{ backgroundColor: "black" }}
-          >
-            <Scene key"Login" Title="Login" icon={tabIcon}>
-
-          </Scene>
-          <Scene key"signUp" Title="SignUp" icon={tabIcon}>
-
-          </Scene> */}
-          {/* </Scene> */}
-
 
         </Scene>
       </Router>
@@ -55,7 +39,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FEF9B0',
+    backgroundColor: '#656472',
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -9,18 +9,20 @@ import { Actions } from 'react-native-router-flux';
 const LoginLanding = () => {
   return (
     <View style={styles.container}>
+
+      <Text style={styles.title} >DiaperBolic</Text>
+
+      <Text style={styles.welcome}>
+        Login
+      </Text>
+
       <Text
-        style={styles.welcome}
+        style={styles.link}
         onPress={() => Actions.SignUp()}
       >
-        LoginLanding Scene
+        Don't have an Account? SignUp Here
       </Text>
-      {/* <Text
-        style={styles.welcome}
-        onPress={() => Actions.modal()}
-      >
-        Open Modal
-      </Text> */}
+
     </View>
   );
 }
@@ -30,14 +32,30 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'blue',
+    backgroundColor: '#656472',
+  },
+  title: {
+    color: 'white',
+    fontSize: 40,
+    fontStyle: 'italic',
+    fontWeight: 'bold',
+    textShadowColor: '#252525',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 15
   },
   welcome: {
-    fontSize: 20,
+    color: 'white',
+    fontSize: 30,
+    fontStyle: 'italic',
+    fontWeight: 'bold',
+
+  },
+  link: {
+    fontSize: 12,
     textAlign: 'center',
     margin: 10,
-    color: '#ffffff',
-  },
+    color: 'blue'
+  }
 });
 
 export default LoginLanding;

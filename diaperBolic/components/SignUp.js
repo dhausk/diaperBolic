@@ -15,7 +15,6 @@ const SignUp = () => {
       >
         SignUp Screen
       </Text>
-
     </View>
   );
 }

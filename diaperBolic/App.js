@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet
 } from 'react-native';
@@ -14,7 +14,7 @@ import SignUp from './components/SignUp';
 //   );
 // }
 
-export default class App extends React.Component {
+export default class App extends Component {
   render() {
     return (
       <Router>

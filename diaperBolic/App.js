@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet
+  StyleSheet, Text
 } from 'react-native';
 import { Router, Scene } from 'react-native-router-flux';
 
@@ -24,9 +24,10 @@ export default class App extends Component {
   }
   userIsLoggedIn = (userName) => {
     this.setState({
-      loggedIn: true,
-      userName: uerName
+      userName: userName,
+      loggedIn: true
     })
+    console.log("you did it "+ userName);
   }
 
   render() {
@@ -36,13 +37,12 @@ export default class App extends Component {
           <Scene key="root">
             <Scene
               Key="LoginLanding"
-              component={LoginLanding}
-              // onExit={() => this.userIsLoggedIn()}
+              component={() => <LoginLanding userIsLoggedIn={this.userIsLoggedIn} />}
               title="DiaperBolic Login"
             />
             <Scene
               key="SignUp"
-              component={SignUp}
+              component={()=> <SignUp  userIsLoggedIn={this.userIsLoggedIn} />}
               title="Diaperbolic Sign Up"
             />
           </Scene>

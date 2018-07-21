@@ -18,7 +18,9 @@ class LoginLanding extends Component {
     }
   }
   render(){
-    console.log(this.props.userIsLoggedIn)
+    
+    const user= this.state.userName
+
     return (
       <View style={styles.container}>
         <Text style={styles.login}>Please Login</Text>
@@ -45,7 +47,7 @@ class LoginLanding extends Component {
         </View>
         
         <Button
-          onPress={()=> Actions.SignUp()}
+          onPress={() => { this.props.userIsLoggedIn(user)}}
           margin='10'
           title="Login"
           color="#007C5C"

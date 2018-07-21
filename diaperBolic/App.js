@@ -15,24 +15,49 @@ import SignUp from './components/SignUp';
 // }
 
 export default class App extends Component {
-  render() {
-    return (
-      <Router>
-        <Scene key="root">
-          <Scene
-            Key="LoginLanding"
-            component={LoginLanding}
-            title="Login"
-          />
-          <Scene
-            key="SignUp"
-            component={SignUp}
-            title="Sign Up"
-          />
+  constructor(props) {
+    super(props);
+    this.state ={
+      loggedIn : false,
+      userName : ""
+    }
+  }
+  userIsLoggedIn = (userName) => {
+    this.setState({
+      loggedIn: true,
+      userName: uerName
+    })
+  }
 
-        </Scene>
-      </Router>
-    );
+  render() {
+    if (this.state.loggedIn === false){
+      return (
+        <Router>
+          <Scene key="root">
+            <Scene
+              Key="LoginLanding"
+              component={LoginLanding}
+              // onExit={() => this.userIsLoggedIn()}
+              title="DiaperBolic Login"
+            />
+            <Scene
+              key="SignUp"
+              component={SignUp}
+              title="Diaperbolic Sign Up"
+            />
+          </Scene>
+        </Router>
+      );
+    }
+    else {
+      return (
+        <Router>
+          <Scene key="root">
+            <Text>You are logged in</Text>
+          </Scene>
+        </Router>
+      );
+    }
   }
 }
 

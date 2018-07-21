@@ -31,7 +31,7 @@ export default class App extends Component {
   }
 
   render() {
-    if (this.state.loggedIn === false){
+
       return (
         <Router>
           <Scene key="root">
@@ -45,20 +45,17 @@ export default class App extends Component {
               component={()=> <SignUp  userIsLoggedIn={this.userIsLoggedIn} />}
               title="Diaperbolic Sign Up"
             />
+            <Scene
+              Key="DashBoard"
+              component={() => <DashBoard />}
+              title={`Diaperbolic Dash Board ${this.state.userName}`}
+            />
           </Scene>
         </Router>
       );
     }
-    else {
-      return (
-        <Router>
-          <Scene key="root">
-            <Text>You are logged in</Text>
-          </Scene>
-        </Router>
-      );
-    }
-  }
+    
+  
 }
 
 const styles = StyleSheet.create({

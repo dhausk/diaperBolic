@@ -15,7 +15,6 @@ class LoginLanding extends Component {
   }
   render() {
 
-
     return (
       <View style={styles.container}>
         <Text>DashBoard</Text>  

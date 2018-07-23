@@ -4,20 +4,29 @@ import {
   Text,
   View
 } from 'react-native';
+
 import { Actions } from 'react-native-router-flux';
 
-class LoginLanding extends Component {
+class Dash extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName:""
+      userName:"",
+      diaperData:[]
     }
   }
+  componentDidMount= ()=>{
+    console.log(this.state);
+    
+  }
+
   render() {
 
     return (
       <View style={styles.container}>
-        <Text>DashBoard</Text>  
+        <Text
+        onPress={Actions.Login()}
+        >DashBoard</Text>  
       </View>
     );
   }
@@ -32,4 +41,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LoginLanding;
+export default Dash;

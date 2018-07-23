@@ -3,10 +3,10 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   TextInput,
   Button
 } from 'react-native';
+
 import { Actions } from 'react-native-router-flux';
 
 class LoginLanding extends Component {
@@ -17,6 +17,12 @@ class LoginLanding extends Component {
       pW:""
     }
   }
+  nextScene(){
+    console.log('pressed');
+    
+    Actions.Dash()
+  }
+
   render(){
     
     const user= this.state.userName
@@ -47,7 +53,7 @@ class LoginLanding extends Component {
         </View>
         
         <Button
-          onPress={() => { this.props.userIsLoggedIn(user)}}
+          onPress={() => Actions.SignUp() }
           margin='10'
           title="Login"
           color="#007C5C"

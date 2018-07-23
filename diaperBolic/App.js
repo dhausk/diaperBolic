@@ -1,19 +1,11 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet, Text
-} from 'react-native';
-import { Router, Scene } from 'react-native-router-flux';
+import {StyleSheet} from 'react-native';
+import { Router, Scene, Actions } from 'react-native-router-flux';
 
-import LoginLanding from './components/LoginLanding';
+import Login from './components/LoginLanding';
 import SignUp from './components/SignUp';
-import DashBoard from './components/DashBoard';
-import DiaperBolic from './components/DiaperBolic';
+import Dash from './components/Dash';
 
-const tabIcon = ({ selected, title }) => {
-  return (
-    <Text style={{ color: selected ? "green" : "white" }}>{title}</Text>
-  );
-}
 
 export default class App extends Component {
   constructor(props) {
@@ -24,48 +16,27 @@ export default class App extends Component {
     }
   }
   userIsLoggedIn = (userName) => {
+    ()=>Actions.DashBoard();
     this.setState({
-      userName: userName,
-      loggedIn: true
-    })
-    console.log("you did it "+ userName);
+      userName: userName
+    })    
   }
   render() {
 
       return (
         <Router>
           <Scene key="root">
-            {/* <Scene
-              Key="LoginLanding"
-              component={() => <LoginLanding userIsLoggedIn={this.userIsLoggedIn} />}
-              title="DiaperBolic Login"
-              initial={!this.state.loggedIn}
+            <Scene Key="Login"
+              component={Login}
+              title="Login"
             />
+            <Scene key="SignUp" component={SignUp} title="SignUp" />
             <Scene
-              key="SignUp"
-              component={()=> <SignUp  userIsLoggedIn={this.userIsLoggedIn} />}
-              title="Diaperbolic Sign Up"
-            /> */}
-            <Scene
-              key="tabbar"
-              tabs={true}
-              tabBarStyle={{ backgroundColor: '#fdf5e6' }}
-              initial={this.state.loggedIn}
-            >
-              <Scene key="Dash" title="Dash" icon={tabIcon}>
-                <Scene
-                  Key="DashBoard"
-                  component={() => <DashBoard />}
-                  title={`Diaperbolic Dash Board ${this.state.userName}`}
-                />
-              </Scene>
-              <Scene key="Diapers" title="Diapers" icon={tabIcon}>
-                <Scene
-                  Key="DiaperBolic"
-                  component={() => <DiaperBolic />}
-                />
-              </Scene>
-            </Scene>
+              Key="Dash"
+              name="Dash"
+              component={() => <Dash user={()=>{this.state.userName}} />}
+              title="DashBoard"
+            />
           </Scene>
         </Router>
       );

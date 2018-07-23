@@ -7,6 +7,7 @@ import {
   TextInput,
   Button
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 class SignUp extends Component {
   constructor(props) {
@@ -16,6 +17,10 @@ class SignUp extends Component {
       pW: "",
       email: ""
     }
+  }
+  nextScene(){
+    Actions.SignUp()
+    // () => Actions.SignUp()
   }
   render() {
 
@@ -58,7 +63,7 @@ class SignUp extends Component {
         </View>
 
         <Button
-          onPress={() => { this.props.userIsLoggedIn(user) }}
+          onPress={() => Actions.Dash() }
           margin='10'
           title="Sign UP"
           color="#007C5C"

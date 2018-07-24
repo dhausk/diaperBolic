@@ -25,8 +25,7 @@ class Dash extends Component {
     return (
       <View style={styles.container}>
         <Text
-        onPress={Actions.Login()}
-        >DashBoard</Text>  
+        >DashBoard you did it</Text>  
       </View>
     );
   }

@@ -36,8 +36,8 @@ submitDiaper (){
             selectedValue={this.state.language}
             style={{ height: 50, width: 100 }}
             onValueChange={(itemValue, itemIndex) => this.setState({ type: itemValue })}>
-            <Picker.Item label="Yellow" value="1" />
-            <Picker.Item label="Brown" value="2" />
+            <Picker.Item label="Wet" value="1" />
+            <Picker.Item label="Soiled" value="2" />
           </Picker>
         </View>
         <Button

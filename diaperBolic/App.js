@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import {StyleSheet} from 'react-native';
+import {
+  StyleSheet, Text
+} from 'react-native';
 import { Router, Scene, Actions } from 'react-native-router-flux';
 
-import Login from './components/LoginLanding';
+import LoginLanding from './components/LoginLanding';
 import SignUp from './components/SignUp';
 import Dash from './components/Dash';
 
@@ -16,7 +18,7 @@ export default class App extends Component {
     }
   }
   userIsLoggedIn = (userName) => {
-    ()=>Actions.DashBoard();
+    ()=>Actions.Dash();
     this.setState({
       userName: userName
     })    
@@ -26,13 +28,13 @@ export default class App extends Component {
       return (
         <Router>
           <Scene key="root">
-            <Scene Key="Login"
-              component={Login}
-              title="Login"
+            <Scene key="LoginLanding"
+              component={() => <LoginLanding userIsLoggedIn={this.userIsLoggedIn} />}
+              title="DiaperBolic Login"
             />
-            <Scene key="SignUp" component={SignUp} title="SignUp" />
+            <Scene key="SignUp" component={() => <SignUp userIsLoggedIn={this.userIsLoggedIn} />}title="SignUp" />
             <Scene
-              Key="Dash"
+              key="Dash"
               name="Dash"
               component={() => <Dash user={()=>{this.state.userName}} />}
               title="DashBoard"

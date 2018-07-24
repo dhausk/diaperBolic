@@ -53,7 +53,7 @@ class LoginLanding extends Component {
         </View>
         
         <Button
-          onPress={() => Actions.SignUp() }
+          onPress={() => Actions.Dash() }
           margin='10'
           title="Login"
           color="#007C5C"

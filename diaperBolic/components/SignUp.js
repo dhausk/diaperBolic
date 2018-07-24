@@ -18,13 +18,16 @@ class SignUp extends Component {
       email: ""
     }
   }
-  nextScene(){
-    Actions.SignUp()
-    // () => Actions.SignUp()
-  }
+  
+  
+  nextScene = () => {
+    this.props.userIsLoggedIn(this.state.userName)
+     Actions.Dash()
+   }
+
+   
   render() {
 
-    const user = this.state.userName
 
     return (
       <View style={styles.container}>
@@ -63,7 +66,7 @@ class SignUp extends Component {
         </View>
 
         <Button
-          onPress={() => Actions.Dash() }
+          onPress={ this.nextScene }
           margin='10'
           title="Sign UP"
           color="#007C5C"

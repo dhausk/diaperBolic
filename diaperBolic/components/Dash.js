@@ -15,8 +15,8 @@ class Dash extends Component {
       diaperData:[]
     }
   }
-  componentDidMount= ()=>{
-    console.log(this.state);
+  componentDidMount = ()=>{
+    console.log("hey dash " + this.props.user);
     
   }
 
@@ -25,7 +25,7 @@ class Dash extends Component {
     return (
       <View style={styles.container}>
         <Text
-        >DashBoard you did it</Text>  
+        >Welcome {this.props.user}</Text>  
       </View>
     );
   }

@@ -18,7 +18,6 @@ export default class App extends Component {
     }
   }
   userIsLoggedIn = (userName) => {
-    ()=>Actions.Dash();
     this.setState({
       userName: userName
     })    
@@ -32,9 +31,10 @@ export default class App extends Component {
               component={() => <LoginLanding userIsLoggedIn={this.userIsLoggedIn} />}
               title="DiaperBolic Login"
             />
-            <Scene key="SignUp" component={() => <SignUp userIsLoggedIn={this.userIsLoggedIn} />}title="SignUp" />
-            <Scene
-              key="Dash"
+            <Scene key="SignUp" 
+            component={() => <SignUp userIsLoggedIn={this.userIsLoggedIn} />}
+            title="SignUp" />
+            <Scene key="Dash"
               name="Dash"
               component={() => <Dash user={()=>{this.state.userName}} />}
               title="DashBoard"

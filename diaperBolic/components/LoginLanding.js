@@ -18,8 +18,6 @@ class LoginLanding extends Component {
     }
   }
   nextScene(){
-    console.log('pressed');
-    
     Actions.Dash()
   }
 
@@ -53,7 +51,7 @@ class LoginLanding extends Component {
         </View>
         
         <Button
-          onPress={() => Actions.Dash() }
+          onPress={this.nextScene }
           margin='10'
           title="Login"
           color="#007C5C"

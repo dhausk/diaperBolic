@@ -36,7 +36,7 @@ export default class App extends Component {
             title="SignUp" />
             <Scene key="Dash"
               name="Dash"
-              component={() => <Dash user={()=>{this.state.userName}} />}
+              component={() => <Dash user={this.state.userName} />}
               title="DashBoard"
             />
           </Scene>

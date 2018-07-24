@@ -21,11 +21,11 @@ class Dash extends Component {
   }
 
   render() {
-
+    const userName = this.props.user
     return (
       <View style={styles.container}>
         <Text
-        >Welcome {this.props.user}</Text>  
+        >Welcome {userName}</Text>  
       </View>
     );
   }

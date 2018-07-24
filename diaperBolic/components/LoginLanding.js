@@ -17,15 +17,13 @@ class LoginLanding extends Component {
       pW:""
     }
   }
-  nextScene(){
+  nextScene = () => {
+    this.props.userIsLoggedIn(this.state.userName)
     Actions.Dash()
   }
 
   render(){
-    
-    const user= this.state.userName
-
-    return (
+      return (
       <View style={styles.container}>
         <Text style={styles.login}>Please Login</Text>
         <View style={styles.inputContainer}>

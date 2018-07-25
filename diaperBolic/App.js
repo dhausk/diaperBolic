@@ -7,6 +7,9 @@ import { Router, Scene, Actions } from 'react-native-router-flux';
 import LoginLanding from './components/LoginLanding';
 import SignUp from './components/SignUp';
 import Dash from './components/Dash';
+import AddDiaper from './components/AddDiaper';
+import EditDiaper from './components/EditDiaper';
+
 
 
 export default class App extends Component {
@@ -25,19 +28,40 @@ export default class App extends Component {
   render() {
 
       return (
-        <Router>
-          <Scene key="root">
+        <Router >
+          <Scene key="root"  >
             <Scene key="LoginLanding"
-              component={() => <LoginLanding userIsLoggedIn={this.userIsLoggedIn} hideNavBar={true} />}
+              component={() => <LoginLanding userIsLoggedIn={this.userIsLoggedIn} />}
             />
             <Scene key="SignUp" 
               component={() => <SignUp userIsLoggedIn={this.userIsLoggedIn} />}
             />
-            <Scene key="Dash"
-              name="Dash"
-              component={() => <Dash user={this.state.userName} />}
-              title="DashBoard"
-            />
+            <Scene key='tab-bar' tabBarStyle={{ backgroundColor: '#f2f2f2' }} 
+              tabs 
+              modal 
+              tabBarPosition="bottom" 
+              hideBackImage={true}
+            >
+              <Scene key="DashBoard" hideNavBar name='DashBoard' title="DashBoard">
+                <Scene key="Dash"
+                  name="Dash"
+                  title="DiaberBolic"
+                  component={() => <Dash user={this.state.userName} />}
+                />
+                <Scene key="addDiaper" hideNavBar name='addDiaper' title="addDiaper" component={AddDiaper}/>
+                <Scene key="EditDiaper" hideNavBar name='EditDiaper' title="EditDiaper" component={EditDiaper}/>
+              </Scene>
+              <Scene key="DiaperBolic"  hideNavBar name='DiaperBolic' title="DiaperBolic">
+                <Scene key="Dash"
+                  name="Dash"
+                  title="DiaberBolic"
+                  component={() => <Dash user={this.state.userName} />}
+                />
+              </Scene>
+              
+            </Scene>
+
+           
           </Scene>
         </Router>
       );

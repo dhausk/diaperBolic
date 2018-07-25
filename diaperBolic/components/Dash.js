@@ -1,44 +1,88 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  View
+  ScrollView,
+  View,
+  Image
 } from 'react-native';
 import { Text } from 'react-native-elements';
+import { VictoryPie, VictoryContainer, VictoryTheme } from "victory-native";
 
-
-const baseUrl = "https://diaperss.herokuapp.com/api/diapers/";
+// const baseUrl = "https://diaperss.herokuapp.com/api/diapers/kaylee";
 
 class Dash extends Component {
   constructor(props) {
     super(props);
     this.state = {
       userName: this.props.user,
+      babyName: "",
       diaperData:[]
     }
   }
-  componentDidMount = ()=>{
-    const diaperUrl = `${baseUrl}${this.state.userName}`
-    fetch(diaperUrl)
-      .then(res => res.json)
-      .then(diaper => this.setState({diaperData : diaper.diapers}));
-    console.log(this.state.diaperData);
-    
+  componentDidMount = () =>{
+    // const diaperUrl = `${baseUrl}&{this.props.user}`
+    const baseUrl = "https://diaperss.herokuapp.com/api/diapers/kaylee";
+    fetch(baseUrl)
+      .then((res) => res.json())
+      .then((res) =>{ 
+        this.setState({
+          diaperData : res.diapers,
+          babyName: res.diapers[0].babyName
+        }) 
+      }).catch((error) => {
+        console.error(error);
+      });;    
+
   }
-
+  countBrown (diapers){
+    var dirt = diapers.filter(diaper =>{
+      return diaper.type == 2 ;
+    })
+    return dirt.length;
+  }
+  countYellow (diapers){
+    var wet = diapers.filter(diaper => {
+      return diaper.type == 1;
+    })
+    return wet.length;
+  }
+  diaperTypes(){
+    const dataDiapers = this.state.diaperData;
+    var solids = this.countBrown(dataDiapers);
+    var wet = this.countYellow(dataDiapers);
+    return [{x:1, y:wet, label:"Wet"}, {w:2, y:solids, label:"Dirty"}]
+  }
   render() {
-    const userName = this.props.user
-
+    const user = this.state.userName
+    const baby = this.state.babyName
+    const data = this.diaperTypes()
+    console.log(data);
+    
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
       <View style={styles.titleCont }>
-        <Text h1>Welcome {userName}</Text>  
+        {/* <Text h2>Welcome back {user}</Text>   */}
+          <View style={styles.title} >
+            <Text style={{ color: "white", margin: 10, marginTop: 30 }} h4>Welcome back</Text>
+            <Text style={{ color: "white", marginTop: 5 }} h4>kaylee</Text> 
+          </View>
+          <Image style={styles.logo} source={require('../assets/splash.png')} />
       </View>
-        <View style={styles.userIinfo}>
-          <Text style={styles.userIinfotext} h3>User Name: {userName} </Text>
-          <Text style={styles.userIinfotext} h3>Baby</Text>
+        <View style={styles.userInfo}>          
+          <Text style={styles.userInfotext} h3>Baby {baby}</Text>
         </View>
-
-      </View>
+        <View style={styles.userInfo}>  
+          <Text style={styles.infoText} >{baby} has created {this.state.diaperData.length} dirty diapers.</Text>
+          <Text style={styles.infoText} >You have Reached the status of Celebrated pooper</Text>
+            <VictoryPie
+            colorScale={["blue","green"]}
+            width={350}
+            data={data}
+            labelRadius={50}
+            style={{ labels: { fill: "white", fontSize: 20, fontWeight: "bold" } }}
+            />
+        </View>
+      </ScrollView>
       
     );
   }
@@ -47,8 +91,6 @@ class Dash extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#656472',
   },
   header:{
@@ -62,13 +104,32 @@ const styles = StyleSheet.create({
       textShadowRadius: 15
   },
   titleCont:{
-
+    flex: 1,
+    flexDirection:"row",
+    justifyContent: 'center',
+    marginTop:25
   },
-  userIinfo:{
-
+  title:{
+    flexDirection:"column",
+    alignItems: 'center',
+    justifyContent: 'center'
   },
-  userIinfotext:{
-    color: 'white'
+  userInfo:{
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  userInfotext:{
+    color: 'white',
+    margin:20
+  },
+  infoText: {
+    color: 'white',
+    fontSize:15
+  },
+  logo: {
+    height: 150,
+    width: 150
   }
 });
 

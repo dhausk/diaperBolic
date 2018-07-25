@@ -20,7 +20,6 @@ class EditDiaper extends Component {
   }
 
   editADiaper = () => {
-
     Alert.alert(
       'You sure?',
       'Submit edit for this Diaper?',
@@ -30,7 +29,6 @@ class EditDiaper extends Component {
       ],
       { cancelable: false }
     )
-    Actions.DiaperBolic()
   }
 
   render() {

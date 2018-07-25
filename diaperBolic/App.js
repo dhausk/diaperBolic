@@ -10,6 +10,7 @@ import Dash from './components/Dash';
 import AddDiaper from './components/AddDiaper';
 import EditDiaper from './components/EditDiaper';
 import DiaperBolic from './components/DiaperBolic';
+const baseUrl = `https://diaperss.herokuapp.com/api/diapers/kaylee`;
 
 export default class App extends Component {
   constructor(props) {
@@ -29,8 +30,8 @@ export default class App extends Component {
     this.userIsSet(userName)
   }
 
-  userIsSet=(user)=>{
-    const baseUrl = `https://diaperss.herokuapp.com/api/diapers/kaylee`;
+  userIsSet = (user) => {
+    
     fetch(baseUrl)
       .then((res) => res.json())
       .then((res) => {
@@ -38,12 +39,33 @@ export default class App extends Component {
           diaperData: res.diapers,
           babyName: res.diapers[0].babyName
         })
-      }).catch((error) => {
+      }).then(Actions.Dash())
+      .catch((error) => {
         console.error(error);
       });; 
   }
-  render() {
+  addADiaper = (diaperSub) => {
+    
+    fetch(baseUrl, {
+      method: 'POST',
+      body: JSON.stringify( diaperSub ),
+      headers: new Headers({ "Content-Type": "application/json" })
+    })
+      .then(res => res.json())
+      .then(res => {
+        let curDiapers = this.state.diaperData
+        curDiapers.push(res)
+        this.setState({
+          diaperData: curDiapers
+        })
+      })
+      .then(Actions.Dash())
+      .catch(err => {
+        console.error(err)
+      })
+  }
 
+  render() {
       return (
         <Router >
           <Scene key="root"  >
@@ -65,8 +87,8 @@ export default class App extends Component {
                   title="DiaberBolic"
                   component={() => <Dash upperState={this.state} />}
                 />
-                <Scene key="addDiaper" hideNavBar name='addDiaper' title="addDiaper" component={AddDiaper}/>
-                <Scene key="EditDiaper" hideNavBar name='EditDiaper' title="EditDiaper" component={EditDiaper}/>
+                
+                
               </Scene>
               <Scene key="DiaperBolic"  hideNavBar name='DiaperBolic' title="DiaperBolic">
                 <Scene key="Dash"
@@ -74,8 +96,13 @@ export default class App extends Component {
                   title="DiaberBolic"
                   component={() => <DiaperBolic upperState={this.state} />}
                 />
+                <Scene key="Edit" name='Edit' title="EditDiaper" component={EditDiaper} />
               </Scene>
-              
+              <Scene key="AddDiaper" hideNavBar name='AddDiaper' title="Add a Diaper">
+                <Scene key="addDiaper" hideNavBar name='addDiaper' title="addDiaper" 
+                component={()=><AddDiaper addADiaper={this.addADiaper} />} />
+
+              </Scene>
             </Scene>
 
            

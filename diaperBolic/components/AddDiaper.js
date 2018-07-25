@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text,
   View,
-  Picker
+  Picker,
+  Alert
 } from 'react-native';
+import { Text, Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 
 class DiaperBolic extends Component {
@@ -18,13 +19,22 @@ class DiaperBolic extends Component {
   }
 
   submitDiaper = () =>{
-
+   
+    Alert.alert(
+      'You created a diaper',
+      'Sucess',
+      [
+        { text: 'OK', onPress: () => console.log('OK Pressed') },
+      ],
+      { cancelable: false }
+    )
+    this.props.addADiaper(this.state)
   }
-  render() {
 
+  render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>DiaperBolic Changing of the under pants form</Text>
+        <Text style={styles.title}>Add a Diaper</Text>
         <View style={styles.inputContainer}>
           <Picker
             style={styles.picker}
@@ -36,7 +46,7 @@ class DiaperBolic extends Component {
           </Picker>
         </View>
         <Button
-          onPress={submitDiaper}
+          onPress={this.submitDiaper}
           margin='10'
           title="Sign UP"
           color="#007C5C"

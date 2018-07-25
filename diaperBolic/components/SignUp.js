@@ -5,7 +5,6 @@ import {
   Image,
   TextInput
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
 import { Text, Button } from 'react-native-elements';
 
 class SignUp extends Component {
@@ -18,16 +17,11 @@ class SignUp extends Component {
     }
   }
   
-  
   nextScene = () => {
     this.props.userIsLoggedIn(this.state.userName)
-     Actions.Dash()
    }
 
-   
   render() {
-
-
     return (
       <View style={styles.container}>
         <Image style={styles.logo} source={require('../assets/splash.png')}/>

@@ -35,7 +35,7 @@ class Dash extends Component {
     const dataDiapers = this.props.upperState.diaperData;
     var solids = this.countBrown(dataDiapers);
     var wet = this.countYellow(dataDiapers);
-    return [{x:1, y:wet, label:"Wet"}, {w:2, y:solids, label:"Dirty"}]
+    return [{x:1, y:wet, label:"Wet"}, {w:2, y:solids, label:"Poops"}]
   }
   render() {
     const user = this.props.upperState.userName

@@ -10,7 +10,7 @@ import EditDiaper from './components/EditDiaper';
 import DiaperBolic from './components/DiaperBolic';
 const baseUrl = `https://diaperss.herokuapp.com/api/diapers/`;
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state ={
@@ -89,8 +89,8 @@ export default class App extends Component {
                 /> 
               </Scene>
               <Scene key="DiaperBolic"  hideNavBar name='DiaperBolic' title="DiaperBolic">
-                <Scene key="Dash"
-                  name="Dash"
+                <Scene key="DiaperBolic"
+                  name="DiaperBolic"
                   title="DiaberBolic"
                   component={() => <DiaperBolic upperState={this.state} />}
                 />
@@ -106,17 +106,4 @@ export default class App extends Component {
       );
     }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#656472',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-
-      // {/* <View style={styles.container}>
-      //   <Text>Open up App.js to start working on your app!</Text>
-      // </View> */}
+export default App;

@@ -19,18 +19,18 @@ class EditDiaper extends Component {
     }
   }
 
-  submitDiaper = () => {
+  editADiaper = () => {
 
     Alert.alert(
       'You sure?',
       'Submit edit for this Diaper?',
       [
-        { text: 'Cancel', onPress: () => Actions.jump("DiaperBolic") },
-        { text: 'OK', onPress: () => Actions.jump("DiaperBolic") },
+        { text: 'Cancel', onPress: () => Actions.DiaperBolic() },
+        { text: 'OK', onPress: () => Actions.DiaperBolic() },
       ],
       { cancelable: false }
     )
-    // this.props.addADiaper(this.state)
+    Actions.DiaperBolic()
   }
 
   render() {
@@ -47,7 +47,7 @@ class EditDiaper extends Component {
             <Picker.Item label="Number 2" value="2" />
           </Picker>
           <Button
-            onPress={this.submitDiaper}
+            onPress={this.editADiaper}
             margin='10'
             title="Add Diaper"
             color="#007C5C"

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text,
   View,
-  TextInput,
-  Button
+  TextInput
 } from 'react-native';
-
 import { Actions } from 'react-native-router-flux';
+import { Text, Button } from 'react-native-elements';
 
 class LoginLanding extends Component {
   constructor(props) {
@@ -21,11 +19,10 @@ class LoginLanding extends Component {
     this.props.userIsLoggedIn(this.state.userName)
     Actions.Dash()
   }
-
   render(){
       return (
       <View style={styles.container}>
-        <Text style={styles.login}>Please Login</Text>
+        <Text style={styles.login} h3>Please Login</Text>
         <View style={styles.inputContainer}>
           <TextInput style={styles.loginForm}
             onChangeText={(userName) => this.setState({ userName })}
@@ -50,10 +47,11 @@ class LoginLanding extends Component {
         
         <Button
           onPress={this.nextScene }
-          margin='10'
           title="Login"
-          color="#007C5C"
+          backgroundColor="#007C5C"
           accessibilityLabel="Click her to login in."
+          raised
+          large
         />
         
   
@@ -61,7 +59,7 @@ class LoginLanding extends Component {
           style={styles.link}
           onPress={() => Actions.SignUp()}
         >
-          Don't have an Account? SignUp Here
+          Don't have an Account? SignUp!
         </Text>
   
       </View>
@@ -76,12 +74,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#656472',
   },
-  title: {
+  button:{
+    textAlign: 'center',
+    fontSize:25,
+    marginTop: 20,
     color: 'white',
-    flex: 4,
-    fontSize: 40,
-    fontStyle: 'italic',
-    fontWeight: 'bold',
     textShadowColor: '#252525',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 15
@@ -105,7 +102,6 @@ const styles = StyleSheet.create({
   login: {
     margin:10,
     color: 'white',
-    fontSize: 20,
     fontStyle: 'italic',
     fontWeight: 'bold',
     textShadowColor: '#252525',
@@ -113,9 +109,9 @@ const styles = StyleSheet.create({
     textShadowRadius: 15
   },
   link: {
-    fontSize: 12,
     textAlign: 'center',
     marginTop: 20,
+    fontSize: 20,
     color: 'white',
     textShadowColor: '#252525',
     textShadowOffset: { width: 2, height: 2 },

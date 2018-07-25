@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   Image,
-  TextInput,
-  Button
+  TextInput
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { Text, Button } from 'react-native-elements';
 
 class SignUp extends Component {
   constructor(props) {
@@ -31,7 +30,7 @@ class SignUp extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.login}>Please Sign Up</Text>
+        <Text style={styles.login} h2 >Please Sign Up</Text>
         <View style={styles.inputContainer}>
           <TextInput style={styles.loginForm}
             onChangeText={(email) => this.setState({ email })}
@@ -67,10 +66,11 @@ class SignUp extends Component {
 
         <Button
           onPress={ this.nextScene }
-          margin='10'
           title="Sign UP"
-          color="#007C5C"
+          backgroundColor="#007C5C"
           accessibilityLabel="Click her to Sign up."
+          large
+          raised 
         />
       </View>
     );
@@ -83,16 +83,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#656472',
-  },
-  title: {
-    color: 'white',
-    flex: 4,
-    fontSize: 40,
-    fontStyle: 'italic',
-    fontWeight: 'bold',
-    textShadowColor: '#252525',
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 15
   },
   inputContainer: {
     margin: 10,
@@ -113,7 +103,6 @@ const styles = StyleSheet.create({
   login: {
     margin: 10,
     color: 'white',
-    fontSize: 20,
     fontStyle: 'italic',
     fontWeight: 'bold',
     textShadowColor: '#252525',

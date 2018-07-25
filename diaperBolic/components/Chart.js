@@ -7,10 +7,10 @@ class Chart extends Component {
     return(
       
         <VictoryPie
-          colorScale={["blue", "green"]}
+        colorScale={["#4396dc", "#007C5C"]}
           width={350}
           data={this.props.dataD}
-          labelRadius={40}
+          labelRadius={35}
           style={{ labels: { fill: "white", fontSize: 20, fontWeight: "bold" } }}
         />
       

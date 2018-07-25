@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text,
   View,
-  Picker
+  Picker,
+  Alert,
+  Image
 } from 'react-native';
+import { Text, Button, Card } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 
 class EditDiaper extends Component {
@@ -18,30 +20,40 @@ class EditDiaper extends Component {
   }
 
   submitDiaper = () => {
-    Actions.Dash()
-  }
-  render() {
 
+    Alert.alert(
+      'You sure?',
+      'Submit edit for this Diaper?',
+      [
+        { text: 'Cancel', onPress: () => Actions.jump("DiaperBolic") },
+        { text: 'OK', onPress: () => Actions.jump("DiaperBolic") },
+      ],
+      { cancelable: false }
+    )
+    // this.props.addADiaper(this.state)
+  }
+
+  render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>DiaperBolic Changing of the under pants form</Text>
-        <View style={styles.inputContainer}>
+        <Image style={styles.logo} source={require('../assets/splash.png')} />
+        <Text style={styles.title}>Edit This Diaper</Text>
+        <Card style={styles.inputContainer}>
           <Picker
             style={styles.picker}
-            selectedValue={this.state.language}
-            style={{ height: 50, width: 100 }}
-            onValueChange={(itemValue, itemIndex) => this.setState({ type: itemValue })}>
-            <Picker.Item label="Wet" value="1" />
-            <Picker.Item label="Soildish" value="2" />
+            selectedValue={this.state.type}
+            onValueChange={(itemValue) => this.setState({ type: itemValue })}>
+            <Picker.Item label="Number 1" value="1" />
+            <Picker.Item label="Number 2" value="2" />
           </Picker>
-        </View>
-        <Button
-          onPress={submitDiaper}
-          margin='10'
-          title="Sign UP"
-          color="#007C5C"
-          accessibilityLabel="Submit a Diaper"
-        />
+          <Button
+            onPress={this.submitDiaper}
+            margin='10'
+            title="Add Diaper"
+            color="#007C5C"
+            accessibilityLabel="Change Diaper type"
+          />
+        </Card>
       </View>
     );
   }
@@ -55,8 +67,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#656472',
   },
   title: {
+    margin: 10,
     color: 'white',
-    flex: 4,
     fontSize: 40,
     fontStyle: 'italic',
     fontWeight: 'bold',
@@ -69,8 +81,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#007C5C',
-    width: "60%",
     padding: 10
+  },
+  picker: {
+    margin: 10,
+    height: 30,
+    width: 200,
+    color: "white",
+    backgroundColor: "#00537a"
+  },
+  logo: {
+    height: 150,
+    width: 150
   }
 
 });

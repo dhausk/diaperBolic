@@ -9,7 +9,7 @@ import {
 import { Text, Button, Card } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 
-class DiaperBolic extends Component {
+class AddDiaper extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -96,4 +96,4 @@ const styles = StyleSheet.create({
  
 });
 
-export default DiaperBolic;
+export default AddDiaper;

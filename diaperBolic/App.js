@@ -68,9 +68,11 @@ export default class App extends Component {
         <Router >
           <Scene key="root"  >
             <Scene key="LoginLanding"
+              hideNavBar
               component={() => <LoginLanding userIsLoggedIn={this.userIsLoggedIn} />}
             />
             <Scene key="SignUp" 
+              title="Back"
               component={() => <SignUp userIsLoggedIn={this.userIsLoggedIn} />}
             />
             <Scene key='tab-bar' tabBarStyle={{ backgroundColor: '#f2f2f2' }} 
@@ -84,9 +86,7 @@ export default class App extends Component {
                   name="Dash"
                   title="DiaberBolic"
                   component={() => <Dash upperState={this.state} />}
-                />
-                
-                
+                /> 
               </Scene>
               <Scene key="DiaperBolic"  hideNavBar name='DiaperBolic' title="DiaperBolic">
                 <Scene key="Dash"
@@ -94,16 +94,13 @@ export default class App extends Component {
                   title="DiaberBolic"
                   component={() => <DiaperBolic upperState={this.state} />}
                 />
-                <Scene key="Edit" name='Edit' title="EditDiaper" component={EditDiaper} />
+                <Scene key="Edit" name='Edit' hideNavBar={false}  component={EditDiaper} title="Back" />
               </Scene>
               <Scene key="AddDiaper" hideNavBar name='AddDiaper' title="Add a Diaper">
                 <Scene key="addDiaper" hideNavBar name='addDiaper' title="addDiaper" 
                 component={()=><AddDiaper addADiaper={this.addADiaper} />} />
-
               </Scene>
             </Scene>
-
-           
           </Scene>
         </Router>
       );

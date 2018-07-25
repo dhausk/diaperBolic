@@ -18,7 +18,6 @@ class LoginLanding extends Component {
   }
   nextScene = () => {
     this.props.userIsLoggedIn(this.state.userName)
-    
   }
   render(){
       return (

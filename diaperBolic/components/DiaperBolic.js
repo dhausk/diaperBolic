@@ -70,7 +70,7 @@ class DiaperBolic extends Component {
         <VictoryChart style={{ parent: { backgroundColor: "#007C5C" } }} >
           <VictoryLine
             style={{
-              data: { stroke: "#c43a31", fill: "#007C5C"  },
+              data: { stroke: "#c43a31", fill: "#4396dc"  },
               parent: { border: "1px solid #ccc" }
             }}
             data={data}
@@ -78,7 +78,6 @@ class DiaperBolic extends Component {
         </VictoryChart>
         {
           diapers.map((diap, i) => (
-            
             <View key={i}>
               <Card key={i} title="Dirty diaper" >
                 <Text style={{ alignSelf: "center" }}>Type of Dirty Diaper: {(diap.type == 2) ? "Poops" : "Wet"}</Text>

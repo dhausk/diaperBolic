@@ -6,7 +6,6 @@ import {
   Image
 } from 'react-native';
 import { Text } from 'react-native-elements';
-import { VictoryPie, VictoryContainer } from "victory-native";
 import { Actions } from '../node_modules/react-native-router-flux';
 import Chart from "./Chart";
 // const baseUrl = "https://diaperss.herokuapp.com/api/diapers/";
@@ -61,7 +60,6 @@ class Dash extends Component {
           <Text style={styles.infoText} >{baby} has created {this.props.upperState.diaperData.length} dirty diapers.</Text>
           <Text style={styles.infoText} >You have reached the status of Celebrated pooper</Text>
           <Chart dataD={data}/>
-            
         </View>
       </ScrollView> 
     );

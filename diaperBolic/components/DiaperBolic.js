@@ -2,48 +2,51 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  View,
-  Picker
+  View
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { VictoryLine, VictoryChart, VictoryTheme } from "victory-native";
 
 class DiaperBolic extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      userName: "",
-      babyName:"",
-      timeStamp:"",
-      type:1
-    }
+    this.state = { }
   }
-submitDiaper (){
-  
-  Actions.DashBoard();
-}
+ 
+  setUpData = () =>{
+    return [
+      { x: 1, y: 1 }, 
+      { x: 4, y: 3 }, 
+      { x: 8, y: 2 },
+      { x: 11, y: 4 },
+      { x: 13, y: 5 },
+      { x: 14, y: 3 },
+      { x: 17, y: 2 },
+      { x: 22, y: 3 },
+      { x: 23, y: 1 }
+    ]
+
+  }
 
   render() {
-
+    const data = this.setUpData()
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>DiaperBolic Changing of the under pants form</Text>
-        <View style={styles.inputContainer}>
-          <Picker
-          style={styles.picker}
-            selectedValue={this.state.language}
-            style={{ height: 50, width: 100 }}
-            onValueChange={(itemValue, itemIndex) => this.setState({ type: itemValue })}>
-            <Picker.Item label="Wet" value="1" />
-            <Picker.Item label="Soildish" value="2" />
-          </Picker>
+        <Text style={styles.title}> The DiaperBolic Curve</Text>
+        
+        <VictoryChart width={350} theme={VictoryTheme.material}>
+          <VictoryLine Data={data} 
+            style={{
+              data: { stroke: "#c43a31" },
+              parent: { border: "1px solid black" }
+            }} />
+        </VictoryChart>
+        
+        
+        <View style={styles.cards}>
+          
         </View>
-        <Button
-          onPress={this.submitDiaper}
-          margin='10'
-          title="Sign UP"
-          color="#007C5C"
-          accessibilityLabel="Submit a Diaper"
-        />
+      
       </View>
     );
   }
@@ -66,40 +69,13 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 15
   },
-  inputContainer: {
+  cards: {
     margin: 10,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#007C5C',
     width: "60%",
     padding: 10
-  },
-  loginForm: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    backgroundColor: 'white',
-    width: "99%",
-    textAlign: "center"
-  },
-  login: {
-    margin: 10,
-    color: 'white',
-    fontSize: 20,
-    fontStyle: 'italic',
-    fontWeight: 'bold',
-    textShadowColor: '#252525',
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 15
-  },
-  link: {
-    fontSize: 12,
-    textAlign: 'center',
-    marginTop: 20,
-    color: 'white',
-    textShadowColor: '#252525',
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 15
   }
 });
 

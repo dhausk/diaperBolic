@@ -6,34 +6,19 @@ import {
   Image
 } from 'react-native';
 import { Text } from 'react-native-elements';
-import { VictoryPie, VictoryContainer, VictoryTheme } from "victory-native";
+import { VictoryPie, VictoryContainer } from "victory-native";
 
-// const baseUrl = "https://diaperss.herokuapp.com/api/diapers/kaylee";
+// const baseUrl = "https://diaperss.herokuapp.com/api/diapers/";
 
 class Dash extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: this.props.user,
-      babyName: "",
-      diaperData:[]
+      userName: "kaylee",
+      babyName: this.props.upperState.babyName,
     }
   }
-  componentDidMount = () =>{
-    // const diaperUrl = `${baseUrl}&{this.props.user}`
-    const baseUrl = "https://diaperss.herokuapp.com/api/diapers/kaylee";
-    fetch(baseUrl)
-      .then((res) => res.json())
-      .then((res) =>{ 
-        this.setState({
-          diaperData : res.diapers,
-          babyName: res.diapers[0].babyName
-        }) 
-      }).catch((error) => {
-        console.error(error);
-      });;    
-
-  }
+  
   countBrown (diapers){
     var dirt = diapers.filter(diaper =>{
       return diaper.type == 2 ;
@@ -47,17 +32,16 @@ class Dash extends Component {
     return wet.length;
   }
   diaperTypes(){
-    const dataDiapers = this.state.diaperData;
+    const dataDiapers = this.props.upperState.diaperData;
     var solids = this.countBrown(dataDiapers);
     var wet = this.countYellow(dataDiapers);
     return [{x:1, y:wet, label:"Wet"}, {w:2, y:solids, label:"Dirty"}]
   }
   render() {
-    const user = this.state.userName
-    const baby = this.state.babyName
+    const user = this.props.upperState.userName
+    const baby = this.props.upperState.babyName
     const data = this.diaperTypes()
-    console.log(data);
-    
+       
     return (
       <ScrollView style={styles.container}>
       <View style={styles.titleCont }>
@@ -72,8 +56,8 @@ class Dash extends Component {
           <Text style={styles.userInfotext} h3>Baby {baby}</Text>
         </View>
         <View style={styles.userInfo}>  
-          <Text style={styles.infoText} >{baby} has created {this.state.diaperData.length} dirty diapers.</Text>
-          <Text style={styles.infoText} >You have Reached the status of Celebrated pooper</Text>
+          <Text style={styles.infoText} >{baby} has created {this.props.upperState.diaperData.length} dirty diapers.</Text>
+          <Text style={styles.infoText} >You have reached the status of Celebrated pooper</Text>
             <VictoryPie
             colorScale={["blue","green"]}
             width={350}
@@ -82,8 +66,7 @@ class Dash extends Component {
             style={{ labels: { fill: "white", fontSize: 20, fontWeight: "bold" } }}
             />
         </View>
-      </ScrollView>
-      
+      </ScrollView> 
     );
   }
 }

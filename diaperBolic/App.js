@@ -9,21 +9,38 @@ import SignUp from './components/SignUp';
 import Dash from './components/Dash';
 import AddDiaper from './components/AddDiaper';
 import EditDiaper from './components/EditDiaper';
-
-
+import DiaperBolic from './components/DiaperBolic';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state ={
       loggedIn : false,
-      userName : ""
+      userName : "",
+      diaperData:[],
+      babyName:""
     }
   }
   userIsLoggedIn = (userName) => {
     this.setState({
+      loggedIn:true,
       userName: userName
-    })    
+    })   
+    this.userIsSet(userName)
+  }
+
+  userIsSet=(user)=>{
+    const baseUrl = `https://diaperss.herokuapp.com/api/diapers/kaylee`;
+    fetch(baseUrl)
+      .then((res) => res.json())
+      .then((res) => {
+        this.setState({
+          diaperData: res.diapers,
+          babyName: res.diapers[0].babyName
+        })
+      }).catch((error) => {
+        console.error(error);
+      });; 
   }
   render() {
 
@@ -46,7 +63,7 @@ export default class App extends Component {
                 <Scene key="Dash"
                   name="Dash"
                   title="DiaberBolic"
-                  component={() => <Dash user={this.state.userName} />}
+                  component={() => <Dash upperState={this.state} />}
                 />
                 <Scene key="addDiaper" hideNavBar name='addDiaper' title="addDiaper" component={AddDiaper}/>
                 <Scene key="EditDiaper" hideNavBar name='EditDiaper' title="EditDiaper" component={EditDiaper}/>
@@ -55,7 +72,7 @@ export default class App extends Component {
                 <Scene key="Dash"
                   name="Dash"
                   title="DiaberBolic"
-                  component={() => <Dash user={this.state.userName} />}
+                  component={() => <DiaperBolic upperState={this.state} />}
                 />
               </Scene>
               

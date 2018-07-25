@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { Text } from 'react-native-elements';
 import { VictoryPie, VictoryContainer } from "victory-native";
+import { Actions } from '../node_modules/react-native-router-flux';
 
 // const baseUrl = "https://diaperss.herokuapp.com/api/diapers/";
 
@@ -18,7 +19,6 @@ class Dash extends Component {
       babyName: this.props.upperState.babyName,
     }
   }
-  
   countBrown (diapers){
     var dirt = diapers.filter(diaper =>{
       return diaper.type == 2 ;
@@ -31,16 +31,18 @@ class Dash extends Component {
     })
     return wet.length;
   }
-  diaperTypes(){
-    const dataDiapers = this.props.upperState.diaperData;
+  diaperTypes(dataDiapers){
     var solids = this.countBrown(dataDiapers);
     var wet = this.countYellow(dataDiapers);
-    return [{x:1, y:wet, label:"Wet"}, {w:2, y:solids, label:"Poops"}]
+    return [{x:1, y:wet, label:`${wet} Wet`}, {w:2, y:solids, label:`${solids} Poops`}]
+  }
+  componentDidMount=()=>{
+    Actions.refresh
   }
   render() {
     const user = this.props.upperState.userName
     const baby = this.props.upperState.babyName
-    const data = this.diaperTypes()
+    let data = this.diaperTypes(this.props.upperState.diaperData)
        
     return (
       <ScrollView style={styles.container}>

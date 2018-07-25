@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet, Text
-} from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Router, Scene, Actions } from 'react-native-router-flux';
 
 import LoginLanding from './components/LoginLanding';
@@ -10,7 +8,7 @@ import Dash from './components/Dash';
 import AddDiaper from './components/AddDiaper';
 import EditDiaper from './components/EditDiaper';
 import DiaperBolic from './components/DiaperBolic';
-const baseUrl = `https://diaperss.herokuapp.com/api/diapers/kaylee`;
+const baseUrl = `https://diaperss.herokuapp.com/api/diapers/`;
 
 export default class App extends Component {
   constructor(props) {
@@ -31,8 +29,9 @@ export default class App extends Component {
   }
 
   userIsSet = (user) => {
-    
-    fetch(baseUrl)
+    // const getUserDataUrl = baseUrl+userName
+    const getUserDataUrl = baseUrl + "kaylee"
+    fetch(getUserDataUrl)
       .then((res) => res.json())
       .then((res) => {
         this.setState({
@@ -45,7 +44,7 @@ export default class App extends Component {
       });; 
   }
   addADiaper = (diaperSub) => {
-    
+    console.log(diaperSub);
     fetch(baseUrl, {
       method: 'POST',
       body: JSON.stringify( diaperSub ),
@@ -58,8 +57,10 @@ export default class App extends Component {
         this.setState({
           diaperData: curDiapers
         })
+        console.log(res);
+        
       })
-      .then(Actions.Dash())
+      .then(Actions.refresh())
       .catch(err => {
         console.error(err)
       })

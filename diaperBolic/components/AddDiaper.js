@@ -24,7 +24,7 @@ class DiaperBolic extends Component {
       'You created a diaper',
       'Sucess',
       [
-        { text: 'OK', onPress: () => console.log('OK Pressed') },
+        { text: 'OK', onPress: () => Actions.jump("Dash") },
       ],
       { cancelable: false }
     )
@@ -41,8 +41,8 @@ class DiaperBolic extends Component {
             selectedValue={this.state.language}
             style={{ height: 50, width: 100 }}
             onValueChange={(itemValue, itemIndex) => this.setState({ type: itemValue })}>
-            <Picker.Item label="Wet" value="1" />
-            <Picker.Item label="Soildish" value="2" />
+            <Picker.Item label="Number 1" value="1" />
+            <Picker.Item label="Number 2" value="2" />
           </Picker>
         </View>
         <Button
@@ -50,7 +50,7 @@ class DiaperBolic extends Component {
           margin='10'
           title="Sign UP"
           color="#007C5C"
-          accessibilityLabel="Submit a Diaper"
+          accessibilityLabel="Add Diaper"
         />
       </View>
     );

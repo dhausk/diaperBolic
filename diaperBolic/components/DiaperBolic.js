@@ -39,7 +39,7 @@ class DiaperBolic extends Component {
       'This Diaper',
       [
         { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-        { text: 'OK', onPress: () => console.log('OK Pressed') },
+        { text: 'OK', onPress: () => Actions.refresh({}) },
       ],
       { cancelable: false }
     )
@@ -81,7 +81,7 @@ class DiaperBolic extends Component {
             
             <View key={i}>
               <Card key={i} title="Dirty diaper" >
-                <Text>Type of Dirty Diaper: {(diap.type == 2) ? "Poops" : "Wet"}</Text>
+                <Text style={{ alignSelf: "center" }}>Type of Dirty Diaper: {(diap.type == 2) ? "Poops" : "Wet"}</Text>
                 <Button 
                   onPress={this.nextScene}
                   title="Edit"
@@ -90,7 +90,7 @@ class DiaperBolic extends Component {
                   raised
                 />
                 <Button
-                  onPress={()=>{this.deleteDiaper(diapers._id)}}
+                  onPress={()=>{this.deleteDiaper(diap._id)}}
                   title="Delete"
                   backgroundColor="#007C5C"
                   accessibilityLabel="Delete"

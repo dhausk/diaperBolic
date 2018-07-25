@@ -3,9 +3,10 @@ import {
   StyleSheet,
   View,
   Picker,
-  Alert
+  Alert,
+  Image
 } from 'react-native';
-import { Text, Button } from 'react-native-elements';
+import { Text, Button, Card } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 
 class DiaperBolic extends Component {
@@ -34,24 +35,24 @@ class DiaperBolic extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Image style={styles.logo} source={require('../assets/splash.png')} />
         <Text style={styles.title}>Add a Diaper</Text>
-        <View style={styles.inputContainer}>
+        <Card style={styles.inputContainer}>
           <Picker
             style={styles.picker}
-            selectedValue={this.state.language}
-            style={{ height: 50, width: 100 }}
-            onValueChange={(itemValue, itemIndex) => this.setState({ type: itemValue })}>
+            selectedValue={this.state.type}
+            onValueChange={(itemValue) => this.setState({ type: itemValue })}>
             <Picker.Item label="Number 1" value="1" />
             <Picker.Item label="Number 2" value="2" />
           </Picker>
-        </View>
-        <Button
+          <Button
           onPress={this.submitDiaper}
           margin='10'
-          title="Sign UP"
+          title="Add Diaper"
           color="#007C5C"
           accessibilityLabel="Add Diaper"
         />
+        </Card>
       </View>
     );
   }
@@ -65,8 +66,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#656472',
   },
   title: {
+    margin:10,
     color: 'white',
-    flex: 4,
     fontSize: 40,
     fontStyle: 'italic',
     fontWeight: 'bold',
@@ -75,12 +76,22 @@ const styles = StyleSheet.create({
     textShadowRadius: 15
   },
   inputContainer: {
-    margin: 10,
+    margin:10,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#007C5C',
-    width: "60%",
     padding: 10
+  },
+  picker:{
+    margin: 10,
+    height:30,
+    width: 200,
+    color:"white",
+    backgroundColor: "#00537a" 
+  },
+  logo: {
+    height: 150,
+    width: 150
   }
  
 });

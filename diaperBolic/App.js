@@ -44,7 +44,6 @@ export default class App extends Component {
       });; 
   }
   addADiaper = (diaperSub) => {
-    console.log(diaperSub);
     fetch(baseUrl, {
       method: 'POST',
       body: JSON.stringify( diaperSub ),
@@ -57,16 +56,14 @@ export default class App extends Component {
         this.setState({
           diaperData: curDiapers
         })
-        console.log(res);
-        
       })
-      .then(Actions.refresh())
+      .then(Actions.refresh({}))
       .catch(err => {
         console.error(err)
       })
   }
-
   render() {
+    console.disableYellowBox = true; 
       return (
         <Router >
           <Scene key="root"  >

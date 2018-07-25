@@ -8,7 +8,7 @@ import {
 import { Text } from 'react-native-elements';
 import { VictoryPie, VictoryContainer } from "victory-native";
 import { Actions } from '../node_modules/react-native-router-flux';
-
+import Chart from "./Chart";
 // const baseUrl = "https://diaperss.herokuapp.com/api/diapers/";
 
 class Dash extends Component {
@@ -21,13 +21,13 @@ class Dash extends Component {
   }
   countBrown (diapers){
     var dirt = diapers.filter(diaper =>{
-      return diaper.type == 2 ;
+      return diaper.type == "2" ;
     })
     return dirt.length;
   }
   countYellow (diapers){
     var wet = diapers.filter(diaper => {
-      return diaper.type == 1;
+      return diaper.type == "1";
     })
     return wet.length;
   }
@@ -37,7 +37,7 @@ class Dash extends Component {
     return [{x:1, y:wet, label:`${wet} Wet`}, {w:2, y:solids, label:`${solids} Poops`}]
   }
   componentDidMount=()=>{
-    Actions.refresh
+    
   }
   render() {
     const user = this.props.upperState.userName
@@ -60,13 +60,8 @@ class Dash extends Component {
         <View style={styles.userInfo}>  
           <Text style={styles.infoText} >{baby} has created {this.props.upperState.diaperData.length} dirty diapers.</Text>
           <Text style={styles.infoText} >You have reached the status of Celebrated pooper</Text>
-            <VictoryPie
-            colorScale={["blue","green"]}
-            width={350}
-            data={data}
-            labelRadius={50}
-            style={{ labels: { fill: "white", fontSize: 20, fontWeight: "bold" } }}
-            />
+          <Chart dataD={data}/>
+            
         </View>
       </ScrollView> 
     );

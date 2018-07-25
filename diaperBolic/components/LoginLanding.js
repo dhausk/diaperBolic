@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
-  TextInput
+  TextInput,
+  Image
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Text, Button } from 'react-native-elements';
@@ -22,6 +23,8 @@ class LoginLanding extends Component {
   render(){
       return (
       <View style={styles.container}>
+        <Image style={styles.logo} source={require('../assets/splash.png')} />
+        <Text style={styles.login} h3>Welcome!</Text>
         <Text style={styles.login} h3>Please Login</Text>
         <View style={styles.inputContainer}>
           <TextInput style={styles.loginForm}
@@ -116,6 +119,10 @@ const styles = StyleSheet.create({
     textShadowColor: '#252525',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 15
+  },
+  logo: {
+    height: 150,
+    width: 150
   }
 });
 

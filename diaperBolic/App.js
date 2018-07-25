@@ -28,12 +28,11 @@ export default class App extends Component {
         <Router>
           <Scene key="root">
             <Scene key="LoginLanding"
-              component={() => <LoginLanding userIsLoggedIn={this.userIsLoggedIn} />}
-              title="DiaperBolic Login"
+              component={() => <LoginLanding userIsLoggedIn={this.userIsLoggedIn} hideNavBar={true} />}
             />
             <Scene key="SignUp" 
-            component={() => <SignUp userIsLoggedIn={this.userIsLoggedIn} />}
-            title="SignUp" />
+              component={() => <SignUp userIsLoggedIn={this.userIsLoggedIn} />}
+            />
             <Scene key="Dash"
               name="Dash"
               component={() => <Dash user={this.state.userName} />}

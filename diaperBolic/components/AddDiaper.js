@@ -23,7 +23,7 @@ class AddDiaper extends Component {
    
     Alert.alert(
       'You created a diaper',
-      'Sucess',
+      'Success',
       [
         { text: 'OK', onPress: () => Actions.jump("Dash") },
       ],

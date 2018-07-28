@@ -17,7 +17,8 @@ class App extends Component {
       loggedIn : false,
       userName : "",
       diaperData:[],
-      babyName:""
+      babyName:"",
+      selectedDiap:{}
     }
   }
   userIsLoggedIn = (userName) => {
@@ -42,6 +43,31 @@ class App extends Component {
       .catch((error) => {
         console.error(error);
       });; 
+  }
+  selectDiap = (diap)=>{
+    this.setState({selectedDiap:diap})
+  }
+
+ 
+  EditADiaper= (diaperEdit)=>{
+    EditUrl = baseUrl+diaperEdit._id
+    fetch(EditUrl, {
+      method: 'POST',
+      body: JSON.stringify(diaperEdit),
+      headers: new Headers({ "Content-Type": "application/json" })
+    })
+      .then(res => res.json())
+      .then(res => {
+        let curDiapers = this.state.diaperData
+        curDiapers.push(res)
+        this.setState({
+          diaperData: curDiapers
+        })
+      })
+      .then(Actions.DiaperBolic())
+      .catch(err => {
+        console.error(err)
+      })
   }
   addADiaper = (diaperSub) => {
     fetch(baseUrl, {
@@ -94,7 +120,9 @@ class App extends Component {
                   title="DiaberBolic"
                   component={() => <DiaperBolic upperState={this.state} />}
                 />
-                <Scene key="Edit" name='Edit' hideNavBar={false}  component={EditDiaper} title="Back" />
+                <Scene key="Edit" name='Edit' hideNavBar={false}  
+                component={()=> <EditDiaper selectedDiap={this.state.selectedDiap} EditDiaper={this.EditADiaper}/>}
+                 title="Back" />
               </Scene>
               <Scene key="AddDiaper" hideNavBar name='AddDiaper' title="Add a Diaper">
                 <Scene key="addDiaper" hideNavBar name='addDiaper' title="addDiaper" 

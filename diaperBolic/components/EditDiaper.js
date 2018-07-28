@@ -13,9 +13,11 @@ class EditDiaper extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      _id: this.props.selectedDiap._id
       userName: "kaylee",
       babyName: "Ellis",
-      type: 1
+      type: 1,
+      timeStamp: this.props.selectedDiap.timeStamp
     }
   }
 
@@ -25,12 +27,12 @@ class EditDiaper extends Component {
       'Submit edit for this Diaper?',
       [
         { text: 'Cancel', onPress: () => Actions.DiaperBolic() },
-        { text: 'OK', onPress: () => Actions.DiaperBolic() },
+        { text: 'OK', onPress: () => this.props.EditDiaper(this.state) },
       ],
       { cancelable: false }
     )
   }
-
+  
   render() {
     return (
       <View style={styles.container}>
